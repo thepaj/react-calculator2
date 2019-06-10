@@ -43,7 +43,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            numberState: null,
+            numberState: 0,
             previousNumber: null,
 
             plusClicked: false,
@@ -68,17 +68,15 @@ class App extends React.Component {
     onNumberClick(num) {
 
         this.setState({
-            previousNumber: this.state.numberState,
-            numberState: num,
+            numberState: (this.state.numberState * 10) + num,
 
-        })
-        console.log(`numberstate ${this.state.numberState}`);
-        console.log(`previous number ${this.state.previousNumber}`);
-        console.log(`num ${num}`);
+        });
     }
 
     onPlusClick() {
         this.setState({
+            previousNumber: this.state.numberState,
+            numberState: null,
             plusClicked: true,
             minusClicked: false,
             timesClicked: false,
@@ -88,6 +86,8 @@ class App extends React.Component {
 
     onMinusClick() {
         this.setState({
+            previousNumber: this.state.numberState,
+            numberState: null,
             minusClicked: true,
             plusClicked: false,
             timesClicked: false,
@@ -97,6 +97,8 @@ class App extends React.Component {
 
     onTimesClick() {
         this.setState({
+            previousNumber: this.state.numberState,
+            numberState: null,
             timesClicked: true,
             plusClicked: false,
             minusClicked: false,
@@ -106,6 +108,8 @@ class App extends React.Component {
 
     onDividedClick() {
         this.setState({
+            previousNumber: this.state.numberState,
+            numberState: null,
             dividedClicked: true,
             plusClicked: false,
             minusClicked: false,
@@ -117,7 +121,6 @@ class App extends React.Component {
         if (this.state.plusClicked === true) {
             this.setState({
                 numberState: this.state.previousNumber + this.state.numberState,
-                //numberState: null,
                 plusClicked: false
             })
         } else if (this.state.minusClicked === true) {
